@@ -13,8 +13,8 @@ const createToken = (id) => {
 
 authController.createAuthToken = (req, res, next) => {
   const authID = req.user.id;
-  const avatar = req;
-  console.log('avatar==>', avatar);
+  // const avatar = req;
+  // console.log('avatar==>', avatar);
 
   console.log('authID===>', req.user.id);
 
