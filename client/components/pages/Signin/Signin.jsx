@@ -26,6 +26,7 @@ const Title = styled(StyledH1)`
 `;
 
 const H1 = styled(StyledH1)`
+  font-size: 26px;
   margin-bottom: 8px;
 `;
 

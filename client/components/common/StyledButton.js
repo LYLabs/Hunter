@@ -8,7 +8,6 @@ const StyledButton = styled.button`
   font-size: ${({ small }) => (small ? '16px' : '20px')};
   line-height: ${({ small }) => (small ? '40px' : '48px')};
   text-decoration: none;
-  color: ${Theme.secondary};
   color: ${({ secondary }) =>
     secondary ? `${Theme.primary}` : `${Theme.secondary}`};
   background: ${({ secondary }) =>

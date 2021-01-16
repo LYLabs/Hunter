@@ -2,8 +2,22 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../routes/useAuth';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
+import { Theme } from '../../style/Theme';
+import { StyledButton } from './StyledButton';
+
+const Button = styled(StyledButton)`
+  background: ${Theme.background};
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: ${Theme.secondary};
+    box-shadow: inset 0 0 0 1px ${Theme.border};
+    border: 1px solid ${Theme.border};
+  }
+`;
 
 const SignoutButton = () => {
   const auth = useAuth();
@@ -27,10 +41,9 @@ const SignoutButton = () => {
   };
 
   return (
-    <button onClick={handleClick}>
-      <FontAwesomeIcon icon={faSignOutAlt} />
+    <Button secondary small onClick={handleClick}>
       Sign Out
-    </button>
+    </Button>
   );
 };
 

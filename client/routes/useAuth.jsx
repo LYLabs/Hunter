@@ -56,25 +56,28 @@ const useProvideAuth = () => {
 //     id: null,
 //     email: null,
 //     firstname: null,
+//     avatar: null,
 //     isAuthenticated: false,
 //   };
 
-//   const signin = (id, email, firstname, cb) => {
+//   const signin = (id, email, firstname, avatar, cb) => {
 //     const user = {
 //       id,
 //       email,
 //       firstname,
+//       avatar,
 //       isAuthenticated: true,
 //     };
 //     localStorage.setItem('user', JSON.stringify(user));
 //     cb();
 //   };
 
-//   const signup = (id, email, firstname, cb) => {
+//   const signup = (id, email, firstname, avatar, cb) => {
 //     const user = {
 //       id,
 //       email,
 //       firstname,
+//       avatar,
 //       isAuthenticated: true,
 //     };
 //     localStorage.setItem('user', JSON.stringify(user));
