@@ -7,9 +7,11 @@ import StepsTableRows from './StepsTableRows';
 import axios from 'axios';
 import styled from 'styled-components';
 import { StyledTable, StyledTableWrapper } from '../../../common';
+import { Theme } from '../../../../style/Theme';
 
 const StepsTableWrapper = styled(StyledTableWrapper)``;
 const StepTable = styled(StyledTable)`
+  background: #f7f7f7;
   margin: 0px;
 `;
 

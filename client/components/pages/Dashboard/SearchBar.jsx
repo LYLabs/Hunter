@@ -54,7 +54,7 @@ const SearchBar = ({ searchInput, updateSearchInput, updateCategoryInput }) => {
         onChange={(e) => updateCategoryInput(e.target.value)}
       >
         <option value={'company'}>Company Name</option>
-        <option value={'job_title'}>Title</option>
+        <option value={'job_title'}>Position</option>
         <option value={'location'}>Location</option>
         <option value={'found_by'}>Found By</option>
         <option value={'how_applied'}>Applied Via</option>

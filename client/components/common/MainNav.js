@@ -31,9 +31,10 @@ const StyledLink = styled(Link)`
 
 const H3 = styled(StyledH3)`
   color: ${Theme.color};
+  font-size: 16px;
   font-weight: bold;
   opacity: 80%;
-  margin-right: 12px;
+  margin-right: 18px;
 `;
 
 const I = styled(StyledIcon)`
@@ -63,12 +64,12 @@ const MainNav = () => {
   return (
     <Nav className="MainNav">
       <StyledLink to="/">INTERVIEW TRACKER</StyledLink>
-      <Div>
-        <div>
-          {auth.user.firstname && <H3>{`Hi, ${auth.user.firstname}!`}</H3>}
-        </div>
-        <div>
-          {auth.user.avatar && (
+      {auth.user.id && (
+        <Div>
+          <div>
+            <H3>{`Hi, ${auth.user.firstname}!`}</H3>
+          </div>
+          <div>
             <Avatar
               src={
                 auth.user.avatar.includes('http')
@@ -77,10 +78,8 @@ const MainNav = () => {
               }
               alt={auth.user.firstname}
             />
-          )}
-        </div>
-        <div>
-          {auth.user.email && (
+          </div>
+          <div>
             <a
               href={`mailto:${auth.user.email}`}
               data-toggle="tooltip"
@@ -90,10 +89,12 @@ const MainNav = () => {
                 <FontAwesomeIcon icon={faEnvelope} />
               </I>
             </a>
-          )}
-        </div>
-        <div>{auth.user.id && <SignoutButton />}</div>
-      </Div>
+          </div>
+          <div>
+            <SignoutButton />
+          </div>
+        </Div>
+      )}
     </Nav>
   );
 };

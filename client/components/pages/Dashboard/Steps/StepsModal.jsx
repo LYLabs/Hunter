@@ -142,45 +142,45 @@ const StepsModal = ({
         <StepsModelForm>
           <StepsModelLabel>Date </StepsModelLabel>
           <StepsModelInput
-            type='date'
+            type="date"
             value={date.slice(0, 10)}
             onChange={(e) => setDate(e.target.value)}
             required
           />
-          <StepsModelLabel>Progess</StepsModelLabel>
+          <StepsModelLabel>Progress</StepsModelLabel>
           <StepsModelInput
-            type='text'
-            placeholder='e.g. interview, screening, offer'
+            type="text"
+            placeholder="e.g. interview, screening, offer"
             value={step_type}
             onChange={(e) => setStepType(e.target.value)}
             required
           />
           <StepsModelLabel>Contact Name</StepsModelLabel>
           <StepsModelInput
-            type='text'
+            type="text"
             value={contact_name}
             onChange={(e) => setContactName(e.target.value)}
             required
           />
           <StepsModelLabel>Contact Role</StepsModelLabel>
           <StepsModelInput
-            type='text'
-            placeholder='e.g. HR representative, manager'
+            type="text"
+            placeholder="e.g. HR representative, manager"
             value={contact_role}
             onChange={(e) => setContractRole(e.target.value)}
             required
           />
           <StepsModelLabel>Email</StepsModelLabel>
           <StepsModelInput
-            type='text'
-            placeholder='e.g. phone number or email'
+            type="text"
+            placeholder="e.g. phone number or email"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
             required
           />
           <StepsModelLabel>Notes</StepsModelLabel>
           <StepsModelInput
-            type='text'
+            type="text"
             value={notes}
             onChange={(e) => setNote(e.target.value)}
             required
@@ -197,7 +197,7 @@ const StepsModal = ({
             <StepsModelButton
               secondary
               small
-              type='submit'
+              type="submit"
               onClick={handleSubmit}
             >
               Save

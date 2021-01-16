@@ -2,13 +2,16 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import {
-  StyledIcon,
-  StyledTd,
-  StyledTr,
-} from '../../../common';
+import { StyledIcon, StyledTd, StyledTr } from '../../../common';
+import { Theme } from '../../../../style/Theme';
 
-const I = styled(StyledIcon)``;
+const I = styled(StyledIcon)`
+  background: #f7f7f7;
+
+  &:hover {
+    background-color: ${Theme.secondary};
+  }
+`;
 const StepsTd = styled(StyledTd)``;
 const StepsTr = styled(StyledTr)``;
 
