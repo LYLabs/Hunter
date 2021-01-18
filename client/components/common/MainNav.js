@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignoutButton from '../common/SignoutButton';
 import { useAuth } from '../../routes/useAuth';
@@ -13,12 +13,16 @@ import { Avatar } from '@material-ui/core';
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   height: 10vh;
   width: 100%;
-  padding: 0 5vw;
+  padding: 3vh 5vw;
   position: fixed;
   top: 0;
+
+  @media (min-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const AppTitle = styled(Link)`
@@ -30,11 +34,16 @@ const AppTitle = styled(Link)`
 `;
 
 const H3 = styled(StyledH3)`
-  color: ${Theme.color};
-  font-size: 16px;
-  font-weight: bold;
-  opacity: 80%;
-  margin-right: 18px;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    color: ${Theme.color};
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 80%;
+    margin-right: 18px;
+  }
 `;
 
 const I = styled(StyledIcon)`
@@ -54,12 +63,54 @@ const I = styled(StyledIcon)`
 
 const Div = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+`;
+
+const MobileMenuIcon = styled.div`
+  width: 32px;
+  min-width: 32px;
+  padding: 5px;
+
+  > div {
+    height: 3px;
+    background: black;
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const Menu = styled.div`
+  visibility: ${({ open }) => (open ? ' visible' : 'hidden')};
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    visibility: visible;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
 `;
 
 const MainNav = () => {
   const auth = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <Nav className="MainNav">
@@ -67,10 +118,13 @@ const MainNav = () => {
       <>
         {auth.user.id && (
           <Div>
-            <div>
+            <MobileMenuIcon onClick={() => setMenuOpen(!menuOpen)}>
+              <div />
+              <div />
+              <div />
+            </MobileMenuIcon>
+            <Menu open={menuOpen}>
               <H3>{`Hi, ${auth.user.firstname}!`}</H3>
-            </div>
-            <div>
               <Avatar
                 src={
                   auth.user.avatar.includes('http')
@@ -79,8 +133,6 @@ const MainNav = () => {
                 }
                 alt={auth.user.firstname}
               />
-            </div>
-            <div>
               <a
                 href={`mailto:${auth.user.email}`}
                 title="Send an Email to yourself!"
@@ -89,10 +141,8 @@ const MainNav = () => {
                   <FontAwesomeIcon icon={faEnvelope} />
                 </I>
               </a>
-            </div>
-            <div>
               <SignoutButton />
-            </div>
+            </Menu>
           </Div>
         )}
       </>
