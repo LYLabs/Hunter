@@ -6,6 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { StyledIcon } from '../../common';
 
+const SearchBarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const SearchSelect = styled(StyledFormInput)`
   opacity: 75%;
   width: 150px;
@@ -35,7 +41,7 @@ const I = styled(StyledIcon)`
 `;
 
 const SearchInput = styled(StyledFormInput)`
-  width: 500px;
+  width: 40vw;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left: 0;
@@ -48,7 +54,7 @@ const SearchInput = styled(StyledFormInput)`
 
 const SearchBar = ({ searchInput, updateSearchInput, updateCategoryInput }) => {
   return (
-    <div>
+    <SearchBarWrapper>
       <SearchSelect
         as="select"
         onChange={(e) => updateCategoryInput(e.target.value)}
@@ -72,7 +78,7 @@ const SearchBar = ({ searchInput, updateSearchInput, updateCategoryInput }) => {
           onChange={(e) => updateSearchInput(e.target.value)}
         />
       </>
-    </div>
+    </SearchBarWrapper>
   );
 };
 

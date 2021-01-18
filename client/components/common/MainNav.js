@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import SignoutButton from '../common/SignoutButton';
 import { useAuth } from '../../routes/useAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/fontawesome-free-regular';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import { Theme } from '../../style/Theme';
 import { StyledIcon } from './StyledIcon';
 import { StyledH3 } from './StyledH3';
+import { Toggle } from './Toggle';
 import { Avatar } from '@material-ui/core';
 
 const Nav = styled.nav`
@@ -26,9 +27,9 @@ const Nav = styled.nav`
 `;
 
 const AppTitle = styled(Link)`
-  color: ${Theme.color};
-  font-weight: bold;
+  color: ${({ theme }) => theme.bodyFontColor};
   opacity: 80%;
+  font-weight: bold;
   font-size: 30px;
   text-decoration: none;
 `;
@@ -38,10 +39,10 @@ const H3 = styled(StyledH3)`
 
   @media (min-width: 768px) {
     display: flex;
-    color: ${Theme.color};
+    color: ${({ theme }) => theme.bodyFontColor};
+    opacity: 80%;
     font-size: 16px;
     font-weight: bold;
-    opacity: 80%;
     margin-right: 18px;
   }
 `;
@@ -81,7 +82,7 @@ const MobileMenuIcon = styled.div`
 
   > div {
     height: 3px;
-    background: black;
+    background: ${({ theme }) => theme.bodyFontColor};
     margin: 5px 0;
     width: 100%;
   }
@@ -111,6 +112,7 @@ const Menu = styled.div`
 const MainNav = () => {
   const auth = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { id, setTheme } = useContext(ThemeContext);
 
   return (
     <Nav className="MainNav">
@@ -142,6 +144,7 @@ const MainNav = () => {
                 </I>
               </a>
               <SignoutButton />
+              <Toggle isActive={id === 'dark'} onToggle={setTheme} />
             </Menu>
           </Div>
         )}
