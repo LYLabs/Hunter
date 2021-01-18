@@ -62,8 +62,8 @@ const MainNav = () => {
   const auth = useAuth();
 
   return (
-    <Nav className="MainNav">
-      <StyledLink to="/">INTERVIEW TRACKER</StyledLink>
+    <Nav className='MainNav'>
+      <StyledLink to='/'>INTERVIEW TRACKER</StyledLink>
       {auth.user.id && (
         <Div>
           <div>
@@ -72,9 +72,10 @@ const MainNav = () => {
           <div>
             <Avatar
               src={
-                auth.user.avatar.includes('http')
-                  ? auth.user.avatar
-                  : `/avatarImages/${auth.user.avatar}`
+                auth.user.avatar
+                //   auth.user.avatar.includes('http')
+                //     ? auth.user.avatar
+                //     : `/avatarImages/${auth.user.avatar}`
               }
               alt={auth.user.firstname}
             />
@@ -82,8 +83,8 @@ const MainNav = () => {
           <div>
             <a
               href={`mailto:${auth.user.email}`}
-              data-toggle="tooltip"
-              title="Send an Email to yourself!"
+              data-toggle='tooltip'
+              title='Send an Email to yourself!'
             >
               <I>
                 <FontAwesomeIcon icon={faEnvelope} />

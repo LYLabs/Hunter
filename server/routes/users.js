@@ -1,27 +1,28 @@
 const express = require('express');
 const multer = require('multer');
-
+const { storage } = require('../cloudinary/index');
+require('dotenv').config();
 const userController = require('../controllers/userController.js');
 const sessionController = require('../controllers/sessionController');
 const applicationRouter = require('../routes/applications');
 
 const userRouter = express.Router();
 
-//for image upload
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'avatarImages');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
-  },
-});
+//for image upload to store in local folder
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'avatarImages');
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + '-' + file.originalname);
+//   },
+// });
 
 const upload = multer({ storage: storage }).single('file');
 
 //route to upload avatar image
 userRouter.post('/upload', (req, res) => {
-  console.log('uploadReq==>', req);
+  //console.log('uploadReq==>', req);
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       console.log('multerErr==>', err);

@@ -190,18 +190,18 @@ const Signup = () => {
     data.append('file', selectedAvatar);
     const res = await axios.post('/user/upload', data);
 
-    console.log('uploadimageres==>', res.data.filename);
-    setAvatar(res.data.filename);
+    console.log('uploadimageres==>', res.data.path);
+    setAvatar(res.data.path);
   };
 
   return (
     <PageLayout>
       <SignupWrapper>
-        <form onSubmit={handleSubmit} id="list">
+        <form onSubmit={handleSubmit} id='list'>
           <H1 center>Create an Account</H1>
           <Div>
             <H3 light>Already have an account?</H3>
-            <Link to="/signin">
+            <Link to='/signin'>
               <SigninButton secondary small>
                 Sign In
               </SigninButton>
@@ -213,7 +213,7 @@ const Signup = () => {
             <>
               <SignupLabal light>First Name</SignupLabal>
               <SignupInput
-                type="text"
+                type='text'
                 value={first_name}
                 onChange={(e) => setFirstName(e.target.value)}
                 required
@@ -221,7 +221,7 @@ const Signup = () => {
 
               <SignupLabal light>Last Name</SignupLabal>
               <SignupInput
-                type="text"
+                type='text'
                 value={last_name}
                 onChange={(e) => setLastName(e.target.value)}
                 required
@@ -229,7 +229,7 @@ const Signup = () => {
 
               <SignupLabal light>Email Address</SignupLabal>
               <SignupInput
-                type="email"
+                type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -251,8 +251,8 @@ const Signup = () => {
               <SignupLabal light>Avatar</SignupLabal>
               <StyledAvatarInputWrapper>
                 <StyledAvatarInput
-                  type="file"
-                  name="avatar"
+                  type='file'
+                  name='avatar'
                   onChange={avatarChangeHandler}
                   required
                 />
