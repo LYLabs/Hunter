@@ -21,7 +21,7 @@ const Nav = styled.nav`
   top: 0;
 `;
 
-const StyledLink = styled(Link)`
+const AppTitle = styled(Link)`
   color: ${Theme.color};
   font-weight: bold;
   opacity: 80%;
@@ -63,38 +63,39 @@ const MainNav = () => {
 
   return (
     <Nav className="MainNav">
-      <StyledLink to="/">INTERVIEW TRACKER</StyledLink>
-      {auth.user.id && (
-        <Div>
-          <div>
-            <H3>{`Hi, ${auth.user.firstname}!`}</H3>
-          </div>
-          <div>
-            <Avatar
-              src={
-                auth.user.avatar.includes('http')
-                  ? auth.user.avatar
-                  : `/avatarImages/${auth.user.avatar}`
-              }
-              alt={auth.user.firstname}
-            />
-          </div>
-          <div>
-            <a
-              href={`mailto:${auth.user.email}`}
-              data-toggle="tooltip"
-              title="Send an Email to yourself!"
-            >
-              <I>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </I>
-            </a>
-          </div>
-          <div>
-            <SignoutButton />
-          </div>
-        </Div>
-      )}
+      <AppTitle to="/">INTERVIEW TRACKER</AppTitle>
+      <>
+        {auth.user.id && (
+          <Div>
+            <div>
+              <H3>{`Hi, ${auth.user.firstname}!`}</H3>
+            </div>
+            <div>
+              <Avatar
+                src={
+                  auth.user.avatar.includes('http')
+                    ? auth.user.avatar
+                    : `/avatarImages/${auth.user.avatar}`
+                }
+                alt={auth.user.firstname}
+              />
+            </div>
+            <div>
+              <a
+                href={`mailto:${auth.user.email}`}
+                title="Send an Email to yourself!"
+              >
+                <I>
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </I>
+              </a>
+            </div>
+            <div>
+              <SignoutButton />
+            </div>
+          </Div>
+        )}
+      </>
     </Nav>
   );
 };
