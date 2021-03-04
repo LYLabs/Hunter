@@ -4,10 +4,12 @@ const db = require('../models/model.js');
 //const keys = require('./keys');
 
 passport.serializeUser((user, done) => {
+  console.log('in serialize');
   done(null, user.id);
-});
+}); //generate a unique identifier and add to cookie in the browser
 
 passport.deserializeUser(async (id, done) => {
+  console.log('deserialize ID===>', id);
   const query = `SELECT * FROM applicants WHERE id = $1`;
   const value = [id];
   try {
@@ -18,7 +20,7 @@ passport.deserializeUser(async (id, done) => {
   } catch (err) {
     console.log('error finding id===>', err);
   }
-});
+}); // after serialize, for any subsequent new request, we will need to deserialize by extracting the cookie using cookieSession in server.js file and deserialize the user id to the user.
 
 passport.use(
   new GoogleStrategy(
