@@ -29,7 +29,7 @@ authController.createAuthToken = (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: 'sessionController.startSession: ERROR: Unable to create auth token',
+      log: 'authController.createAuthToken: ERROR: Unable to create auth token',
       message: {
         err: err.message,
       },
