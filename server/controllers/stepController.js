@@ -1,5 +1,5 @@
 const db = require('../models/model.js');
-const { sendEmail } = require('../emails/accounts');
+//const { sendEmail } = require('../emails/accounts');
 
 const stepController = {};
 
