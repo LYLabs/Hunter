@@ -88,6 +88,7 @@ const Signin = () => {
     }
   };
 
+  //there is no need to put this request in the useEffect is because we are making a get request every time we are hitting the home page.
   const localSignin = async () => {
     try {
       const res = await axios.post('/user/signin', { username, password });
@@ -121,6 +122,7 @@ const Signin = () => {
     }, 2000);
   };
 
+  //why didn't we write two useEffect together in one place?
   useEffect(() => {
     return () => {
       clearTimeout(timeoutID);

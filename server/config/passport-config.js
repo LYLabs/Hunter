@@ -23,15 +23,16 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: keys.google.clientID,
+      clientID: keys.google.clientID, //public token, sharable, identify ourselves to google servers.
       clientSecret: keys.google.clientSecret,
-      // clientID: process.env.googleclientID,
-      // clientSecret: process.env.googleclientSecret,
+      //not sharable, secret
       callbackURL: '/auth/google/redirect',
     },
 
+    //this is a callback func
     function (accessToken, refreshToken, profile, done) {
       console.log('profile==>', profile);
+      //maybe better to use id instead of email to search, id is unique, while email not necessarily
       const qText = `SELECT * FROM applicants WHERE email = $1`;
       const email = [profile._json.email];
       console.log('email', email);
