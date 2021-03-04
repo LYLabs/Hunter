@@ -1,40 +1,50 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import SignoutButton from '../common/SignoutButton';
 import { useAuth } from '../../routes/useAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/fontawesome-free-regular';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import { Theme } from '../../style/Theme';
 import { StyledIcon } from './StyledIcon';
 import { StyledH3 } from './StyledH3';
+import { Toggle } from './Toggle';
 import { Avatar } from '@material-ui/core';
 
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   height: 10vh;
   width: 100%;
-  padding: 0 5vw;
+  padding: 3vh 5vw;
   position: fixed;
   top: 0;
+
+  @media (min-width: 768px) {
+    align-items: center;
+  }
 `;
 
-const StyledLink = styled(Link)`
-  color: ${Theme.color};
-  font-weight: bold;
+const AppTitle = styled(Link)`
+  color: ${({ theme }) => theme.bodyFontColor};
   opacity: 80%;
+  font-weight: bold;
   font-size: 30px;
   text-decoration: none;
 `;
 
 const H3 = styled(StyledH3)`
-  color: ${Theme.color};
-  font-size: 16px;
-  font-weight: bold;
-  opacity: 80%;
-  margin-right: 18px;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    color: ${({ theme }) => theme.bodyFontColor};
+    opacity: 80%;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 18px;
+  }
 `;
 
 const I = styled(StyledIcon)`
@@ -54,48 +64,91 @@ const I = styled(StyledIcon)`
 
 const Div = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+`;
+
+const MobileMenuIcon = styled.div`
+  width: 32px;
+  min-width: 32px;
+  padding: 5px;
+
+  > div {
+    height: 3px;
+    background: ${({ theme }) => theme.bodyFontColor};
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const Menu = styled.div`
+  visibility: ${({ open }) => (open ? ' visible' : 'hidden')};
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    visibility: visible;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
 `;
 
 const MainNav = () => {
   const auth = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { id, setTheme } = useContext(ThemeContext);
 
   return (
     <Nav className='MainNav'>
-      <StyledLink to='/'>INTERVIEW TRACKER</StyledLink>
-      {auth.user.id && (
-        <Div>
-          <div>
-            <H3>{`Hi, ${auth.user.firstname}!`}</H3>
-          </div>
-          <div>
-            <Avatar
-              src={
-                auth.user.avatar
-                //   auth.user.avatar.includes('http')
-                //     ? auth.user.avatar
-                //     : `/avatarImages/${auth.user.avatar}`
-              }
-              alt={auth.user.firstname}
-            />
-          </div>
-          <div>
-            <a
-              href={`mailto:${auth.user.email}`}
-              data-toggle='tooltip'
-              title='Send an Email to yourself!'
-            >
-              <I>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </I>
-            </a>
-          </div>
-          <div>
-            <SignoutButton />
-          </div>
-        </Div>
-      )}
+      <AppTitle to='/'>INTERVIEW TRACKER</AppTitle>
+      <>
+        {auth.user.id && (
+          <Div>
+            <MobileMenuIcon onClick={() => setMenuOpen(!menuOpen)}>
+              <div />
+              <div />
+              <div />
+            </MobileMenuIcon>
+            <Menu open={menuOpen}>
+              <H3>{`Hi, ${auth.user.firstname}!`}</H3>
+              <Avatar
+                src={
+                  auth.user.avatar.includes('http')
+                    ? auth.user.avatar
+                    : `/avatarImages/${auth.user.avatar}`
+                }
+                alt={auth.user.firstname}
+              />
+              <a
+                href={`mailto:${auth.user.email}`}
+                title='Send an Email to yourself!'
+              >
+                <I>
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </I>
+              </a>
+              <SignoutButton />
+              <Toggle isActive={id === 'dark'} onToggle={setTheme} />
+            </Menu>
+          </Div>
+        )}
+      </>
     </Nav>
   );
 };

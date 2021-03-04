@@ -41,8 +41,7 @@ const StepsTableRow = ({
       <StepsTd>
         <a
           href={`mailto:${contact_info}`}
-          data-toggle="tooltip"
-          title="Send me Email!"
+          title="Send me an Email!"
           style={{ color: 'black' }}
         >
           {contact_info}

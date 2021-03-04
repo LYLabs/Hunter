@@ -1,4 +1,4 @@
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .low-priority-col {
     display: none;
   }
@@ -21,4 +21,3 @@
   transform: scale(0.9);
   transition: opacity 500ms, transform 500ms;
 }
-

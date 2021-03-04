@@ -17,3 +17,4 @@ export * from './StyledTableWrapper';
 export * from './StyledTd';
 export * from './StyledTh';
 export * from './StyledTr';
+export * from './Toggle';
