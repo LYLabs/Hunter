@@ -1,7 +1,7 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const db = require('../models/model.js');
-const keys = require('./keys');
+// const keys = require('./keys');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -23,10 +23,10 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GitHubStrategy(
     {
-      clientID: keys.github.clientID,
-      clientSecret: keys.github.clientSecret,
-      // clientID: process.env.githubclientID,
-      // clientSecret: process.env.githubclientSecret,
+      // clientID: keys.github.clientID,
+      // clientSecret: keys.github.clientSecret,
+      clientID: process.env.GITHUB_CLIENTID,
+      clientSecret: process.env.GITHUB_CLIENTSECRET,
       callbackURL: 'http://localhost:3000/auth/github/redirect',
     },
 
