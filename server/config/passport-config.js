@@ -56,13 +56,15 @@ passport.use(
             }
             console.log('userCreated===>', data.rows[0]);
             const newUser = data.rows[0];
-            done(null, newUser);
+            done(null, newUser); //first arg is an error obj, indicating something going wrong, in this case, since it successfully created the user, error obj would be null
+
+            //calling done with newly created user to tell passport to resume to auth process
           });
         }
         console.log('userAlreadyExists==>', data.rows[0]);
         const currentUser = data.rows[0];
 
-        done(null, currentUser);
+        done(null, currentUser); //calling done with found user to tell passport to resume to auth process
       });
     }
   )
