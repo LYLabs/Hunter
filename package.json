@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/IterationDevs/Interview-TrackerX.git"
+    "url": "https://github.com/LYLabs/Interview-Tracker.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/IterationDevs/Interview-TrackerX/issues"
+    "url": "https://github.com/LYLabs/Interview-Tracker/issues"
   },
-  "homepage": "https://github.com/IterationDevs/Interview-TrackerX#readme",
+  "homepage": "https://github.com/LYLabs/Interview-Tracker#readme",
   "dependencies": {
     "@fortawesome/fontawesome-free-regular": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
