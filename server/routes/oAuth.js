@@ -17,7 +17,7 @@ authRouter.get(
   passport.authenticate('google'),
   authController.createAuthToken,
   (req, res) => {
-    res.redirect('http://localhost:8080/');
+    res.redirect('/');
   }
 );
 
@@ -43,7 +43,7 @@ authRouter.get(
   passport.authenticate('github'),
   authController.createAuthToken,
   (req, res) => {
-    res.redirect('http://localhost:8080/');
+    res.redirect('/');
   }
 );
 
