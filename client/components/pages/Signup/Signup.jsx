@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../../routes/useAuth';
 import PageLayout from '../../common/PageLayout';
 import styled from 'styled-components';
+import successImg from '../../../assets/images/success.png';
+
 import {
   StyledFormLabel,
   StyledFormInput,
@@ -122,6 +124,7 @@ const Signup = () => {
   const [password2, setPassword2] = useState('');
   const [selectedAvatar, setAvatar] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [upload, setupload] = useState(false);
 
   const auth = useAuth();
   const history = useHistory();
@@ -175,6 +178,7 @@ const Signup = () => {
     return () => {
       clearTimeout(timeoutID);
       setLoading(false);
+      setupload(false);
     };
   }, []);
 
@@ -192,6 +196,7 @@ const Signup = () => {
 
     console.log('uploadimageres==>', res.data.path);
     setAvatar(res.data.path);
+    setupload(true);
   };
 
   return (
@@ -257,6 +262,10 @@ const Signup = () => {
                   required
                 />
                 <UploadButton onClick={handleClick}>Upload</UploadButton>
+
+                {upload && selectedAvatar ? (
+                  <img src={successImg} alt='success' />
+                ) : null}
               </StyledAvatarInputWrapper>
             </>
           )}
