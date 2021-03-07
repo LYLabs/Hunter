@@ -23,8 +23,6 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GitHubStrategy(
     {
-      // clientID: keys.github.clientID,
-      // clientSecret: keys.github.clientSecret,
       clientID: process.env.GITHUB_CLIENTID,
       clientSecret: process.env.GITHUB_CLIENTSECRET,
       callbackURL: '/auth/github/redirect',

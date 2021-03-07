@@ -25,12 +25,9 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      //clientID: keys.google.clientID, //public token, sharable, identify ourselves to google servers.
-      //clientSecret: keys.google.clientSecret,
-      //not sharable, secret
-      clientID: process.env.GOOGLE_CLIENTID,
+      clientID: process.env.GOOGLE_CLIENTID, //public token, sharable, identify ourselves to google servers.
       clientSecret: process.env.GOOGLE_CLIENTSECRET,
-      callbackURL: '/auth/google/redirect',
+      callbackURL: '/auth/google/redirect', //not sharable, secret
     },
 
     //this is a callback func
