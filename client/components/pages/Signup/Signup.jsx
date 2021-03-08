@@ -127,6 +127,7 @@ const Signup = () => {
   const [selectedAvatar, setAvatar] = useState(null);
   const [loading, setLoading] = useState(false);
   const [upload, setupload] = useState(false);
+  const [passMatch, setMatch] = useState(true);
 
   const auth = useAuth();
   const history = useHistory();
@@ -134,7 +135,8 @@ const Signup = () => {
   const localSignup = async () => {
     // check if passwords match before submit
     if (password !== password2) {
-      alert('password does not match');
+      //alert('password does not match');
+      console.log('password not matching');
     } else {
       try {
         console.log('selectedAvatar==>', selectedAvatar);
@@ -169,11 +171,14 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-
-    timeoutID = setTimeout(() => {
-      localSignup();
-    }, 2000);
+    if (password !== password2) {
+      setMatch(false);
+    } else {
+      setLoading(true);
+      timeoutID = setTimeout(() => {
+        localSignup();
+      }, 2000);
+    }
   };
 
   useEffect(() => {
@@ -256,6 +261,11 @@ const Signup = () => {
                 onChange={(e) => setPassword2(e.target.value)}
                 required
               />
+              {passMatch ? null : (
+                <p style={{ color: 'red' }}>
+                  password do not match, please enter again
+                </p>
+              )}
               <SignupLabal light>Avatar</SignupLabal>
               <StyledAvatarInputWrapper>
                 <StyledAvatarInput
