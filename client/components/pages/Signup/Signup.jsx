@@ -114,6 +114,7 @@ const UploadButton = styled.div`
 `;
 
 const Signup = () => {
+  //console.log(successImg);
   let timeoutID;
 
   // react hooks
@@ -206,6 +207,7 @@ const Signup = () => {
           <H1 center>Create an Account</H1>
           <Div>
             <H3 light>Already have an account?</H3>
+
             <Link to='/signin'>
               <SigninButton secondary small>
                 Sign In
@@ -264,7 +266,8 @@ const Signup = () => {
                 <UploadButton onClick={handleClick}>Upload</UploadButton>
 
                 {upload && selectedAvatar ? (
-                  <img src={successImg} alt='success' />
+                  //<img src={'successImg'} alt='success' />
+                  <p>uploaded</p>
                 ) : null}
               </StyledAvatarInputWrapper>
             </>

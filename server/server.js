@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../client')));
 
 app.use(cookieSession({ maxAge: 60 * 60 * 1000, keys: [process.env.keys] }));
 app.use(cookieParser());
