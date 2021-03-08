@@ -55,6 +55,7 @@ const Signin = () => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errMsg, setErrMsg] = useState(false);
 
   const auth = useAuth();
   // console.log('auth in Signin Component', auth)
@@ -104,7 +105,12 @@ const Signin = () => {
     } catch (error) {
       if (error.response.status === 401) {
         history.push('/signin');
+        setErrMsg(true);
         setLoading(false);
+
+        setTimeout(() => {
+          setErrMsg(false);
+        }, 2000);
       }
       console.log(
         'Error in handleSubmit in Signin component: ',
@@ -167,6 +173,10 @@ const Signin = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+
+              {errMsg ? (
+                <p style={{ color: 'red' }}>Email or Password incorrect</p>
+              ) : null}
             </>
           )}
           <>

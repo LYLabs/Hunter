@@ -128,6 +128,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [upload, setupload] = useState(false);
   const [passMatch, setMatch] = useState(true);
+  const [emailErr, setEmailErr] = useState(false);
 
   const auth = useAuth();
   const history = useHistory();
@@ -157,7 +158,14 @@ const Signup = () => {
         );
         console.log('auth.user in Signup Component ===> ', auth.user);
       } catch (error) {
-        if (error.response.status === 401) {
+        if (error.response.data.err.includes('applicants_email_key')) {
+          history.push('/signup');
+          setLoading(false);
+          setEmailErr(true);
+          setTimeout(() => {
+            setEmailErr(false);
+          }, 3000);
+        } else {
           history.push('/signin');
           setLoading(false);
         }
@@ -173,6 +181,9 @@ const Signup = () => {
     e.preventDefault();
     if (password !== password2) {
       setMatch(false);
+      setTimeout(() => {
+        setMatch(true);
+      }, 2000);
     } else {
       setLoading(true);
       timeoutID = setTimeout(() => {
@@ -247,6 +258,9 @@ const Signup = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+              {emailErr ? (
+                <p style={{ color: 'red' }}>Email address taken</p>
+              ) : null}
 
               <SignupLabal light>Password</SignupLabal>
               <StyledFormPWDInput
