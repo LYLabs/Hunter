@@ -4,6 +4,7 @@ import { useAuth } from '../../../routes/useAuth';
 import PageLayout from '../../common/PageLayout';
 import styled from 'styled-components';
 import successImg from '../../../assets/images/success.png';
+// import man from '../../../assets/images/man.png';
 
 import {
   StyledFormLabel,
@@ -266,7 +267,7 @@ const Signup = () => {
                 <UploadButton onClick={handleClick}>Upload</UploadButton>
 
                 {upload && selectedAvatar ? (
-                  //<img src={'successImg'} alt='success' />
+                  //<img src={successImg} alt='success' />
                   <p>uploaded</p>
                 ) : null}
               </StyledAvatarInputWrapper>
