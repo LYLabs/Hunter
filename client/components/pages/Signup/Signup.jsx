@@ -267,7 +267,11 @@ const Signup = () => {
                 <UploadButton onClick={handleClick}>Upload</UploadButton>
 
                 {upload && selectedAvatar ? (
-                  <img src={successImg} alt='success' />
+                  <img
+                    style={{ height: '30px', width: '30px' }}
+                    src={successImg}
+                    alt='success'
+                  />
                 ) : null}
               </StyledAvatarInputWrapper>
             </>
