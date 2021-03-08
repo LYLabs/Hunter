@@ -267,8 +267,7 @@ const Signup = () => {
                 <UploadButton onClick={handleClick}>Upload</UploadButton>
 
                 {upload && selectedAvatar ? (
-                  //<img src={successImg} alt='success' />
-                  <p>uploaded</p>
+                  <img src={successImg} alt='success' />
                 ) : null}
               </StyledAvatarInputWrapper>
             </>
