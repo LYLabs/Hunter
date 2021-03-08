@@ -196,7 +196,6 @@ const Signup = () => {
     return () => {
       clearTimeout(timeoutID);
       setLoading(false);
-      setupload(false);
     };
   }, []);
 
@@ -215,6 +214,9 @@ const Signup = () => {
     console.log('uploadimageres==>', res.data.path);
     setAvatar(res.data.path);
     setupload(true);
+    setTimeout(() => {
+      setupload(false);
+    }, 4000);
   };
 
   return (
@@ -259,7 +261,9 @@ const Signup = () => {
                 required
               />
               {emailErr ? (
-                <p style={{ color: 'red' }}>Email address taken</p>
+                <p style={{ color: 'red' }}>
+                  An account already exists with this Email
+                </p>
               ) : null}
 
               <SignupLabal light>Password</SignupLabal>
